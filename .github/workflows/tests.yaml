@@ -1,0 +1,19 @@
+name: Run test cases
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    container:
+      image: erlang:22.0.7
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Eunit
+      run: make eunit
+    - name: Ct
+      run: make ct
+    - name: Cover
+      run: make cover
